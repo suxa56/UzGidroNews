@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">UzGidro News</string>
+
+    <!-- Accessibility -->
+    <string name="card_image_description">Главное фото новости</string>
+
+    <!-- Temp values -->
+    <string name="temp_card_title">”PowerChina International Group Limited” kompaniyasi Andijon viloyatida quvvati 400 MVt bo‘lgan quyosh fotoelektr stansiyasini quradi</string>
 </resources>

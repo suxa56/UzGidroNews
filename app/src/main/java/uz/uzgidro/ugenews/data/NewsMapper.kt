@@ -2,11 +2,11 @@ package uz.uzgidro.ugenews.data
 
 import uz.uzgidro.ugenews.data.net.dto.Item
 import uz.uzgidro.ugenews.data.net.dto.Root
-import uz.uzgidro.ugenews.domain.News
+import uz.uzgidro.ugenews.domain.NewsModel
 
 class NewsMapper {
-    private fun mapApiDtoToModel(item: Item): News {
-        return News(
+    private fun mapApiDtoToModel(item: Item): NewsModel {
+        return NewsModel(
             id = item.id,
             title = item.uz,
             smallText = item.uzsmall,
@@ -17,7 +17,7 @@ class NewsMapper {
         )
     }
 
-    fun mapListDtoToListModel(root: Root?): List<News>? {
+    fun mapListDtoToListModel(root: Root?): List<NewsModel>? {
         return root?.items?.map {
             mapApiDtoToModel(it)
         }?.toList()

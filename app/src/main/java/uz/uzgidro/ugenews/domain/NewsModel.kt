@@ -1,6 +1,6 @@
 package uz.uzgidro.ugenews.domain
 
-data class News(
+data class NewsModel(
     val id: Int? = null,
     val title: String? = null,
     val smallText: String? = null,

@@ -1,9 +1,8 @@
 package uz.uzgidro.ugenews.data
 
-import android.util.Log
 import uz.uzgidro.ugenews.data.net.api.RetrofitClient
 import uz.uzgidro.ugenews.data.net.api.RetrofitServices
-import uz.uzgidro.ugenews.domain.News
+import uz.uzgidro.ugenews.domain.NewsModel
 import uz.uzgidro.ugenews.domain.NewsRepo
 
 class NewsRepoImpl : NewsRepo {
@@ -12,11 +11,8 @@ class NewsRepoImpl : NewsRepo {
 
     private val mapper = NewsMapper()
 
-    override suspend fun getNews(): List<News>? {
+    override suspend fun getNews(): List<NewsModel>? {
         val response = retrofitService.getNews().execute()
-        Log.d("asd", response.isSuccessful.toString())
-        Log.d("asd", response.code().toString())
-        Log.d("asd", response.message().toString())
         return mapper.mapListDtoToListModel(
             response.body()
         )

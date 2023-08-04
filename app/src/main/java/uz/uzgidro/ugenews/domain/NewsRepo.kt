@@ -1,5 +1,5 @@
 package uz.uzgidro.ugenews.domain
 
 interface NewsRepo {
-    suspend fun getNews(): List<News>?
+    suspend fun getNews(): List<NewsModel>?
 }
