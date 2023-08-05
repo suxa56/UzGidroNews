@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import uz.uzgidro.ugenews.data.NewsRepoImpl
 import uz.uzgidro.ugenews.domain.GetNewsUseCase
@@ -31,7 +32,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                 _isNetworkError.postValue(false)
             } catch (e: Exception) {
                 _isNetworkError.postValue(true)
+                delay(5000)
+                getNews()
             }
         }
+
     }
 }
