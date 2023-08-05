@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">UzGidro News</string>
 
+    <!-- -->
+    <string name="connection_error">Нет соединения с сервером</string>
+
     <!-- Accessibility -->
     <string name="card_image_description">Главное фото новости</string>
 

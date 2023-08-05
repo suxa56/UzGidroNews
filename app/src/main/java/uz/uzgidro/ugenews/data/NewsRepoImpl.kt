@@ -1,13 +1,14 @@
 package uz.uzgidro.ugenews.data
 
+import android.app.Application
 import uz.uzgidro.ugenews.data.net.api.RetrofitClient
 import uz.uzgidro.ugenews.data.net.api.RetrofitServices
 import uz.uzgidro.ugenews.domain.NewsModel
 import uz.uzgidro.ugenews.domain.NewsRepo
 
-class NewsRepoImpl : NewsRepo {
+class NewsRepoImpl(private val application: Application) : NewsRepo {
     private val retrofitService: RetrofitServices
-        get() = RetrofitClient.getClient(BASE_URL).create(RetrofitServices::class.java)
+        get() = RetrofitClient(application.applicationContext).getClient(BASE_URL).create(RetrofitServices::class.java)
 
     private val mapper = NewsMapper()
 

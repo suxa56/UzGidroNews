@@ -1,15 +1,16 @@
 package uz.uzgidro.ugenews.data.net.api
 
+import android.content.Context
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetrofitClient {
+class RetrofitClient(context: Context) {
     private var retrofit: Retrofit? = null
 
     private val okHttpClient = OkHttpClient()
         .newBuilder()
-        .addInterceptor(RequestInterceptor)
+        .addInterceptor(RequestInterceptor(context))
         .build()
 
     fun getClient(baseUrl: String): Retrofit {

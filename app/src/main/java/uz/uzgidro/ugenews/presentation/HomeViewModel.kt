@@ -13,16 +13,24 @@ import uz.uzgidro.ugenews.domain.NewsModel
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repo = NewsRepoImpl()
+    private val repo = NewsRepoImpl(application)
     private val getNewsUseCase = GetNewsUseCase(repo)
 
     private val _news = MutableLiveData<List<NewsModel>>()
     val news: LiveData<List<NewsModel>> get() = _news
 
+    private val _isNetworkError = MutableLiveData<Boolean>()
+    val isNetworkError: LiveData<Boolean> get() = _isNetworkError
+
     fun getNews() {
         viewModelScope.launch(Dispatchers.IO) {
-            getNewsUseCase()?.let {
-                _news.postValue(it)
+            try {
+                getNewsUseCase()?.let {
+                    _news.postValue(it)
+                }
+                _isNetworkError.postValue(false)
+            } catch (e: Exception) {
+                _isNetworkError.postValue(true)
             }
         }
     }

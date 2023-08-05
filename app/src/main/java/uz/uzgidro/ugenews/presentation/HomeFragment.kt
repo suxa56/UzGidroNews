@@ -10,6 +10,7 @@ import uz.uzgidro.ugenews.R
 import uz.uzgidro.ugenews.databinding.FragmentHomeBinding
 import uz.uzgidro.ugenews.presentation.recycler.NewsAdapter
 
+
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -53,6 +54,14 @@ class HomeFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.news.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+        }
+
+        viewModel.isNetworkError.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.noInternetIcon.visibility = View.VISIBLE
+            } else {
+                binding.noInternetIcon.visibility = View.GONE
+            }
         }
     }
 }
