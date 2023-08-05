@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import uz.uzgidro.ugenews.R
 import uz.uzgidro.ugenews.databinding.FragmentHomeBinding
 import uz.uzgidro.ugenews.presentation.recycler.NewsAdapter
 
@@ -36,13 +35,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupToolbar()
         setupRecyclerView()
         observeViewModel()
-    }
-
-    private fun setupToolbar() {
-        binding.toolbar.title = getString(R.string.app_name)
     }
 
     private fun setupRecyclerView() {
