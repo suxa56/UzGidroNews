@@ -14,7 +14,6 @@
             android:id="@+id/cardImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
             android:minHeight="194dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,15 +35,13 @@
                 style="@style/TextAppearance.Material3.TitleMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
+                android:maxLines="2"
+                android:maxLength="120"
                 android:ellipsize="end"
                 android:text="@string/temp_card_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
