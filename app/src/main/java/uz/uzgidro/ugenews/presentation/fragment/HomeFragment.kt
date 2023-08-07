@@ -1,4 +1,4 @@
-package uz.uzgidro.ugenews.presentation
+package uz.uzgidro.ugenews.presentation.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import uz.uzgidro.ugenews.databinding.FragmentHomeBinding
+import uz.uzgidro.ugenews.presentation.viewmodel.HomeViewModel
 import uz.uzgidro.ugenews.presentation.recycler.NewsAdapter
 
 
@@ -46,7 +47,11 @@ class HomeFragment : Fragment() {
         homeRV.adapter = adapter
 
         adapter.onClickListener = {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToNewsFragment(it))
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToNewsFragment(
+                    it
+                )
+            )
         }
     }
 

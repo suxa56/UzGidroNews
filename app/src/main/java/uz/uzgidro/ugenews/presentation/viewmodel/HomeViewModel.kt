@@ -1,4 +1,4 @@
-package uz.uzgidro.ugenews.presentation
+package uz.uzgidro.ugenews.presentation.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
