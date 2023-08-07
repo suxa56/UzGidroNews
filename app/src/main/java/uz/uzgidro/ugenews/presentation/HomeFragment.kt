@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import uz.uzgidro.ugenews.databinding.FragmentHomeBinding
 import uz.uzgidro.ugenews.presentation.recycler.NewsAdapter
 
@@ -43,6 +44,10 @@ class HomeFragment : Fragment() {
         val homeRV = binding.homeRV
         adapter = NewsAdapter()
         homeRV.adapter = adapter
+
+        adapter.onClickListener = {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToNewsFragment(it))
+        }
     }
 
     private fun observeViewModel() {
