@@ -34,14 +34,14 @@ class NewsViewModel : ViewModel() {
             val lastIndex = parsedText.indexOf(">")
 
             if (firstIndex == imgIndex) {
-                blocks["text-$mapIndex"] = parsedText.substringBefore("<")
+                blocks["$TEXT_BLOCK_PREFIX$mapIndex"] = parsedText.substringBefore("<")
                 mapIndex++
                 parsedText = parsedText.replaceRange(0, firstIndex + 1, "")
 
                 val hrefIndex = parsedText.indexOf("src")
                 parsedText = parsedText.replaceRange(0, hrefIndex + 5, "")
 
-                blocks["img-$mapIndex"] = parsedText.substringBefore("\"")
+                blocks["$IMAGE_BLOCK_PREFIX$mapIndex"] = parsedText.substringBefore("\"")
                 mapIndex++
 
                 val imgCloseIndex = parsedText.indexOf(">")
@@ -52,7 +52,12 @@ class NewsViewModel : ViewModel() {
                     .replaceRange(firstIndex, lastIndex + 1, "")
             }
         }
-        blocks["text-$mapIndex"] = parsedText
+        blocks["$TEXT_BLOCK_PREFIX$mapIndex"] = parsedText
         _textBlocks.value = blocks
+    }
+
+    companion object {
+        const val TEXT_BLOCK_PREFIX = "text-"
+        const val IMAGE_BLOCK_PREFIX = "img-"
     }
 }
