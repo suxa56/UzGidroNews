@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.chip.Chip
 import com.squareup.picasso.Picasso
 import uz.uzgidro.ugenews.databinding.FragmentNewsBinding
 import uz.uzgidro.ugenews.presentation.viewmodel.NewsViewModel
@@ -39,7 +40,9 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
+        setupNewsInfo()
         observeViewModel()
+        setupClickListener()
     }
 
     private fun setupToolbar() {
@@ -48,7 +51,15 @@ class NewsFragment : Fragment() {
         }
 
         binding.toolbar.title = args.news.title
+    }
 
+    private fun setupNewsInfo() {
+        with(args) {
+            Picasso.get().load(news.img).fit().centerCrop().into(binding.newsImage)
+            binding.newsTitle.text = news.title
+            binding.newsDate.text = news.date
+            binding.newsViews.text = news.views.toString()
+        }
     }
 
     private fun observeViewModel() {
@@ -60,6 +71,15 @@ class NewsFragment : Fragment() {
                     createImageField(value)
                 }
             }
+        }
+    }
+
+    private fun setupClickListener() {
+        binding.newsDate.setOnClickListener {
+            (it as Chip).isChecked = true
+        }
+        binding.newsViews.setOnClickListener {
+            (it as Chip).isChecked = true
         }
     }
 
