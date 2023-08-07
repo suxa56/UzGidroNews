@@ -28,13 +28,14 @@ class NewsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
+        viewModel.parseText(args.news.text!!)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
-        setupContent()
+        observeViewModel()
     }
 
     private fun setupToolbar() {
@@ -46,10 +47,9 @@ class NewsFragment : Fragment() {
 
     }
 
-    private fun setupContent() {
-        with(args) {
+    private fun observeViewModel() {
+        viewModel.textBlocks.observe(viewLifecycleOwner) {
 
-            binding.title.text = viewModel.parseText(news.text!!)
         }
     }
 }

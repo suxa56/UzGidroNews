@@ -10,7 +10,9 @@ class NewsViewModel : ViewModel() {
     private val _textBlocks = MutableLiveData<Map<String, String>>()
     val textBlocks: LiveData<Map<String, String>> get() = _textBlocks
 
-    fun parseText(text: String): String {
+    fun parseText(text: String) {
+        val blocks = mutableMapOf<String, String>()
+        var mapIndex = 0
         var parsedText = text
         parsedText = parsedText
             .replace("&quot;", "\"")
@@ -28,10 +30,29 @@ class NewsViewModel : ViewModel() {
 
         while (parsedText.indexOf("<") != -1) {
             val firstIndex = parsedText.indexOf("<")
+            val imgIndex = parsedText.indexOf("<img")
             val lastIndex = parsedText.indexOf(">")
-            parsedText = parsedText
-                .replaceRange(firstIndex, lastIndex+1, "")
+
+            if (firstIndex == imgIndex) {
+                blocks["text-$mapIndex"] = parsedText.substringBefore("<")
+                mapIndex++
+                parsedText = parsedText.replaceRange(0, firstIndex + 1, "")
+
+                val hrefIndex = parsedText.indexOf("src")
+                parsedText = parsedText.replaceRange(0, hrefIndex + 5, "")
+
+                blocks["img-$mapIndex"] = parsedText.substringBefore("\"")
+                mapIndex++
+
+                val imgCloseIndex = parsedText.indexOf(">")
+                parsedText = parsedText
+                    .replaceRange(0, imgCloseIndex + 1, "")
+            } else {
+                parsedText = parsedText
+                    .replaceRange(firstIndex, lastIndex + 1, "")
+            }
         }
-        return parsedText
+        blocks["text-$mapIndex"] = parsedText
+        _textBlocks.value = blocks
     }
 }
