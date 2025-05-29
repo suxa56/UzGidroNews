@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import uz.uzgidro.ugenews.databinding.FragmentHomeBinding
-import uz.uzgidro.ugenews.presentation.viewmodel.HomeViewModel
 import uz.uzgidro.ugenews.presentation.recycler.NewsAdapter
+import uz.uzgidro.ugenews.presentation.viewmodel.HomeViewModel
 
 
 class HomeFragment : Fragment() {
